@@ -41,6 +41,9 @@ def main():
         sys.exit(1)
 
     projects = sorted([folder for folder in os.listdir(projects_path) if os.path.isdir(os.path.join(projects_path, folder))])
+    if len(projects) == 0:
+        print('No projects found')
+        sys.exit(0)
     notebooks = [Notebook(project) for project in projects]
 
     option = sys.argv[1]
