@@ -1,8 +1,8 @@
 import sys
 
-def select_project_notebook(notebooks):
+def select_project(projects):
 
-    def choose_project(notebooks):
+    def choose_project(projects):
 
         def get_project_index(list_):
             while True:
@@ -17,12 +17,12 @@ def select_project_notebook(notebooks):
                     print('Wrong value, try again')
 
         print('ID - Project')
-        for i, notebook in enumerate(notebooks):
-            print(f'{i:2d} - {notebook.project}')
-        return notebooks[get_project_index(notebooks)]
+        for i, project in enumerate(projects):
+            print(f'{i:2d} - {project}')
+        return projects[get_project_index(projects)]
 
-    notebook = choose_project(notebooks)
-    return notebook
+    project = choose_project(projects)
+    return project
 
 def get_args():
     if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall']:
