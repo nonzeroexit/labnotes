@@ -12,7 +12,9 @@ class Notebook:
 
     def add_note(self, note, date):
         with open(self.path, 'a', encoding='utf-8') as fhandle:
-            fhandle.write(f'{date} - {note}\n')
+            if date not in self.get_content():
+                fhandle.write(f'### {date}\n') # more than one note from the same day
+            fhandle.write(f'* {note}\n')
 
     def __repr__(self):
         return self.project
