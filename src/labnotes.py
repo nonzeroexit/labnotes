@@ -37,7 +37,7 @@ def main():
         sys.exit(1)
 
     if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall']:
-        print('usage:\n  labnote [add/read/readall]')
+        print('usage:\n  labnotes [add/read/readall]')
         sys.exit(1)
 
     projects = sorted([folder for folder in os.listdir(projects_path) if os.path.isdir(os.path.join(projects_path, folder))])
