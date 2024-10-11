@@ -7,13 +7,10 @@ from classes.Notebook import Notebook
 from modules.print_markdown import print_notes
 
 def main():
+    usr_input.check_sysargv()
     projects_path = os.getenv('projects_path')
     if projects_path is None:
         print('projects_path env var not configured')
-        sys.exit(1)
-
-    if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall']:
-        print('usage:\n  labnotes [add/read/readall]')
         sys.exit(1)
 
     projects = sorted([folder for folder in os.listdir(projects_path) if os.path.isdir(os.path.join(projects_path, folder))])

@@ -1,3 +1,5 @@
+import sys
+
 def select_project_notebook(notebooks):
 
     def choose_project(notebooks):
@@ -21,3 +23,8 @@ def select_project_notebook(notebooks):
 
     notebook = choose_project(notebooks)
     return notebook
+
+def check_sysargv():
+    if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall']:
+        print('usage:\n  labnotes [add/read/readall]')
+        sys.exit(1)
