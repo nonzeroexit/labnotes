@@ -5,8 +5,6 @@ from datetime import date as get_date
 from classes.Notebook import Notebook
 from modules.print_markdown import print_notes
 
-#TODO add markdown support
-
 def select_project_notebook(notebooks):
 
     def choose_project(notebooks):
