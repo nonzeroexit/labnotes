@@ -3,6 +3,7 @@ import os
 import sys
 from datetime import date as get_date
 from classes.Notebook import Notebook
+from modules.print_markdown import print_notes
 
 #TODO add markdown support
 
@@ -53,12 +54,12 @@ def main():
 
     if option == 'readall':
         all_notebooks_content = ('\n').join([notebook.get_content() for notebook in notebooks if notebook.exists])
-        print(all_notebooks_content)
+        print_notes(all_notebooks_content)
         sys.exit(0)
 
     notebook = select_project_notebook(notebooks)
     if option == 'read':
-        print(notebook.get_content() if notebook.exists else 'Notebook not found')
+        print_notes(notebook.get_content() if notebook.exists else 'Notebook not found')
 
     if option == 'add':
         note = input('Note: ')
