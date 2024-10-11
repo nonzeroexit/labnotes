@@ -56,13 +56,11 @@ def main():
     notebook = select_project_notebook(notebooks)
     if option == 'read':
         print(notebook.get_content() if notebook.exists else 'Notebook not found')
-        sys.exit(0)
 
     if option == 'add':
         note = input('Note: ')
         date = get_date.today().strftime("%d-%m-%y")
         notebook.add_note(note, date)
-        sys.exit(0)
 
 if __name__ == '__main__':
     main()
