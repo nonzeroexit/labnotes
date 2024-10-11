@@ -10,5 +10,9 @@ class Notebook:
         with open(self.path, 'r', encoding='utf-8') as fhandle:
             return f'# {self.project}\n{fhandle.read().strip()}'
 
+    def add_note(self, note, date):
+        with open(self.path, 'a', encoding='utf-8') as fhandle:
+            fhandle.write(f'{date} - {note}\n')
+
     def __repr__(self):
         return self.project

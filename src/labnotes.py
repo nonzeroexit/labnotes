@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os
 import sys
-from datetime import date
+from datetime import date as get_date
 from classes.Notebook import Notebook
 
 #TODO add markdown support
@@ -60,11 +60,8 @@ def main():
 
     if option == 'add':
         note = input('Note: ')
-        today = date.today()
-        text_line = f'# {today.strftime("%d-%m-%y")} - {note}\n'
-        with open(project_notes_path, 'a', encoding='utf-8') as notes:
-            notes.write(text_line)
-        print(f'Note saved on project: {project}')
+        date = get_date.today().strftime("%d-%m-%y")
+        notebook.add_note(note, date)
         sys.exit(0)
 
 if __name__ == '__main__':
