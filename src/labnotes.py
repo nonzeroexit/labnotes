@@ -2,6 +2,7 @@
 import os
 import sys
 from datetime import date
+from classes.Notebook import Notebook
 
 #TODO add markdown support
 
@@ -36,6 +37,9 @@ def main():
     if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall']:
         print('usage:\n  labnote [add/read/readall]')
         sys.exit(1)
+
+    projects = sorted([folder for folder in os.listdir(projects_path) if os.path.isdir(os.path.join(projects_path, folder))])
+    notebooks = [Notebook(project) for project in projects]
 
     option = sys.argv[1]
     if option == 'readall':
