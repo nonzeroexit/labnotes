@@ -6,27 +6,29 @@ from classes.Notebook import Notebook
 
 #TODO add markdown support
 
-def get_project(projects_path):
+def select_project_notebook(notebooks):
 
-    def choose_from_list(list_):
+    def choose_project(notebooks):
 
-        def get_list_index(list_):
+        def get_project_index(list_):
             while True:
                 try:
                     index = int(input('ID: '))
                 except ValueError:
+                    print('Wrong value, try again')
                     continue
                 if 0 <= index < len(list_):
                     return index
+                else:
+                    print('Wrong value, try again')
 
-        for i, item in enumerate(list_):
-            print(i, item)
+        print('ID - Project')
+        for i, notebook in enumerate(notebooks):
+            print(f'{i:2d} - {notebook.project}')
+        return notebooks[get_project_index(notebooks)]
 
-        return list_[get_list_index(list_)]
-
-    projects = sorted([folder for folder in os.listdir(projects_path) if os.path.isdir(os.path.join(projects_path, folder))])
-    project = choose_from_list(projects)
-    return project, os.path.join(projects_path, project, 'labnotes.txt')
+    notebook = choose_project(notebooks)
+    return notebook
 
 def main():
     projects_path = os.getenv('projects_path')
@@ -51,10 +53,9 @@ def main():
         print(all_notebooks_content)
         sys.exit(0)
 
-    project, project_notes_path = get_project(projects_path)
+    notebook = select_project_notebook(notebooks)
     if option == 'read':
-        print(f'\nNOTES FROM: {project}\n')
-        os.system(f'cat {project_notes_path}')
+        print(notebook.get_content() if notebook.exists else 'Notebook not found')
         sys.exit(0)
 
     if option == 'add':
