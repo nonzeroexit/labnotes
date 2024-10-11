@@ -7,7 +7,6 @@ from classes.Notebook import Notebook
 from modules.print_markdown import print_notes
 
 def main():
-    usr_input.check_sysargv()
     projects_path = os.getenv('projects_path')
     if projects_path is None:
         print('projects_path env var not configured')
@@ -18,11 +17,7 @@ def main():
         print('No projects found')
         sys.exit(0)
     notebooks = [Notebook(project, projects_path) for project in projects]
-
-    option = sys.argv[1]
-    if option in ['read', 'readall'] and not any([notebook.exists for notebook in notebooks]):
-        print('No notebooks found.')
-        sys.exit(1)
+    option = usr_input.get_args()
 
     if option == 'readall':
         all_notebooks_content = ('\n').join([notebook.get_content() for notebook in notebooks if notebook.exists])
