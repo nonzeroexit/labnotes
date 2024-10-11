@@ -43,7 +43,7 @@ def main():
     if len(projects) == 0:
         print('No projects found')
         sys.exit(0)
-    notebooks = [Notebook(project) for project in projects]
+    notebooks = [Notebook(project, projects_path) for project in projects]
 
     option = sys.argv[1]
     if option in ['read', 'readall'] and not any([notebook.exists for notebook in notebooks]):
