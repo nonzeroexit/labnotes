@@ -49,7 +49,7 @@ def main():
         sys.exit(1)
 
     if option == 'readall':
-        all_notebooks_content = ('').join([notebook.get_content() for notebook in notebooks if notebook.exists])
+        all_notebooks_content = ('\n').join([notebook.get_content() for notebook in notebooks if notebook.exists])
         print(all_notebooks_content)
         sys.exit(0)
 
