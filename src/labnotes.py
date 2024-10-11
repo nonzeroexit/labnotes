@@ -42,8 +42,13 @@ def main():
     notebooks = [Notebook(project) for project in projects]
 
     option = sys.argv[1]
+    if option in ['read', 'readall'] and not any([notebook.exists for notebook in notebooks]):
+        print('No notebooks found.')
+        sys.exit(1)
+
     if option == 'readall':
-        os.system('find $rd -name labnotes.txt | xargs tail -n 5')
+        all_notebooks_content = ('').join([notebook.get_content() for notebook in notebooks if notebook.exists])
+        print(all_notebooks_content)
         sys.exit(0)
 
     project, project_notes_path = get_project(projects_path)
