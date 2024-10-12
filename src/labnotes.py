@@ -12,7 +12,7 @@ def main():
 
     if option == 'readall':
         n_notes = usr_input.get_n_notes()
-        notebooks = [Notebook(project) for project in projects if Notebook(project).exists]
+        notebooks = [Notebook(project) for project in projects if Notebook(project).exists and Notebook(project).has_content]
         notebooks_content = [f'# {notebook.project}\n{notebook.get_last_n_notes(n_notes)}' for notebook in notebooks]
         print_notes(('\n').join(notebooks_content))
 

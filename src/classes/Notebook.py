@@ -7,6 +7,8 @@ class Notebook:
         self.project = project
         self.path = os.path.join(get_projects_path(), project, 'labnotes.txt')
         self.exists = os.path.isfile(self.path)
+        if self.exists:
+            self.has_content = os.path.getsize(self.path) > 0
 
     def get_content(self):
         with open(self.path, 'r', encoding='utf-8') as fhandle:
