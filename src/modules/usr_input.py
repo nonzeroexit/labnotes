@@ -1,4 +1,5 @@
 import sys
+from modules import misc
 
 def select_project(projects):
 
@@ -26,16 +27,14 @@ def select_project(projects):
 
 def get_args():
     if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall', 'search']:
-        print('usage:\n  labnotes [add/read/readall/search]')
-        sys.exit(1)
+        misc.error('usage:\n  labnotes [add/read/readall/search]')
 
     option = sys.argv[1]
     return option
 
 def get_search_query():
     if len(sys.argv) < 3:
-        print('usage:\n  labnotes search query')
-        sys.exit(1)
+        misc.error('usage:\n  labnotes search query')
 
     query = sys.argv[2]
     return query

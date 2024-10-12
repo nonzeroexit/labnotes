@@ -24,8 +24,7 @@ def main():
         for notebook in notebooks:
             hits += notebook.search_note(query)
         if not hits:
-            print('No hits found')
-            sys.exit(0)
+            misc.error('No hits found', 0)
         for hit in hits:
             print_notes(hit)
         sys.exit(0)
