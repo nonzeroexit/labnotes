@@ -14,9 +14,8 @@ def main():
         notebooks = [Notebook(project) for project in projects]
         all_notebooks_content = ('\n').join([notebook.get_content() for notebook in notebooks if notebook.exists])
         print_notes(all_notebooks_content)
-        sys.exit(0)
 
-    if option == 'search':
+    elif option =='search':
         query = usr_input.get_search_query()
         notebooks = [Notebook(project) for project in projects]
         notebooks = [notebook for notebook in notebooks if notebook.exists]
@@ -27,14 +26,15 @@ def main():
             misc.error('No hits found', 0)
         for hit in hits:
             print_notes(hit)
-        sys.exit(0)
 
-    project = usr_input.select_project(projects)
-    notebook = Notebook(project)
-    if option == 'read':
+    elif option == 'read':
+        project = usr_input.select_project(projects)
+        notebook = Notebook(project)
         print_notes(notebook.get_content() if notebook.exists else 'Notebook not found')
 
-    if option == 'add':
+    elif option == 'add':
+        project = usr_input.select_project(projects)
+        notebook = Notebook(project)
         note = input('Note: ')
         notebook.add_note(note)
 
