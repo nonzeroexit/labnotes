@@ -27,7 +27,7 @@ class Notebook:
                 date = line.strip(' #')
             if query in line:
                 hits.append(f'* {self.project} ({date})  \n{line.strip(" *")}')
-        return hits
+        return ('\n').join(hits)
 
     def __repr__(self):
         return self.project
