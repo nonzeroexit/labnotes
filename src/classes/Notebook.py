@@ -10,7 +10,10 @@ class Notebook:
 
     def get_content(self):
         with open(self.path, 'r', encoding='utf-8') as fhandle:
-            return f'# {self.project}\n{fhandle.read().strip()}'
+            notebook_content = fhandle.read().strip()
+            if not notebook_content:
+                return ''
+            return f'# {self.project}\n{notebook_content}'
 
     def add_note(self, note):
         date = get_date.today().strftime("%d-%m-%y")
