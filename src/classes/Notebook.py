@@ -28,11 +28,11 @@ class Notebook:
                 note_counter += 1
             lines.insert(0, line)
             if note_counter == n_notes:
-                oldest_date = [line for pos, line in enumerate(reverse_content) if pos > i and line.startswith('###') ]
-                lines.insert(0, oldest_date[0] if len(oldest_date) >= 1 else NO_DATE)
+                dates = [line for pos, line in enumerate(reverse_content) if pos > i and line.startswith('###')]
+                last_note_date = dates[0] if len(dates) >= 1 else f'### {NO_DATE}'
+                lines.insert(0, last_note_date)
                 break
-        notes = ('\n').join(lines)
-        return notes
+        return ('\n').join(lines)
 
     def add_note(self, note):
         date = get_date.today().strftime("%d-%m-%y")
