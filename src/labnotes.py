@@ -13,7 +13,7 @@ def main():
     if option == 'readall':
         n_notes = usr_input.get_n_notes()
         notebooks = [Notebook(project) for project in projects if Notebook(project).exists]
-        notebooks_content = [notebook.get_last_n_notes(n_notes) for notebook in notebooks]
+        notebooks_content = [f'# {notebook.project}\n{notebook.get_last_n_notes(n_notes)}' for notebook in notebooks]
         print_notes(('\n').join(notebooks_content))
 
     elif option =='search':
@@ -27,7 +27,7 @@ def main():
     elif option == 'read':
         project = usr_input.select_project(projects)
         notebook = Notebook(project)
-        print_notes(notebook.get_content() if notebook.exists else 'Notebook not found')
+        print_notes(f'# {notebook.project}\n{notebook.get_content()}' if notebook.exists else 'Notebook not found')
 
     elif option == 'add':
         project = usr_input.select_project(projects)
