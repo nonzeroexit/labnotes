@@ -26,8 +26,8 @@ def select_project(projects):
     return project
 
 def get_args():
-    if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall', 'search']:
-        misc.error('usage:\n  labnotes [add/read/readall/search]')
+    if len(sys.argv) < 2 or sys.argv[1] not in ['help', 'add', 'read', 'readall', 'search'] or sys.argv[1] == 'help':
+        misc.error('usage:\n  labnotes [add/read/readall [last_n_notes]/search query]')
 
     option = sys.argv[1]
     return option
@@ -47,7 +47,7 @@ def get_n_notes():
     try:
         n_notes = int(sys.argv[2])
         if n_notes < 1:
-            misc.error('n_notes must be bigger than 0')
+            misc.error('last_n_notes must be bigger than 0')
     except ValueError:
         misc.error(f'{sys.argv[2]} is not a valid number')
     except IndexError:
