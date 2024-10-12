@@ -2,6 +2,8 @@ import os
 from datetime import date as get_date
 from modules.misc import get_projects_path
 
+NO_DATE = 'noDate'
+
 class Notebook:
     def __init__(self, project):
         self.project = project
@@ -27,7 +29,7 @@ class Notebook:
             lines.insert(0, line)
             if note_counter == n_notes:
                 oldest_date = [line for pos, line in enumerate(reverse_content) if pos > i and line.startswith('###') ]
-                lines.insert(0, oldest_date[0] if len(oldest_date) >= 1 else 'noDate')
+                lines.insert(0, oldest_date[0] if len(oldest_date) >= 1 else NO_DATE)
                 break
         notes = ('\n').join(lines)
         return notes
@@ -41,7 +43,7 @@ class Notebook:
 
     def search_note(self, query):
         hits = []
-        date = 'noDate'
+        date = NO_DATE
         for line in self.get_content().split('\n'):
             if line.startswith('###'):
                 date = line.strip(' #')
