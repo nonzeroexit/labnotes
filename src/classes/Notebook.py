@@ -19,5 +19,15 @@ class Notebook:
                 fhandle.write(f'### {date}\n') # more than one note from the same day
             fhandle.write(f'* {note}\n')
 
+    def search_note(self, query):
+        hits = []
+        date = 'noDate'
+        for line in self.get_content().split('\n'):
+            if line.startswith('###'):
+                date = line.strip(' #')
+            if query in line:
+                hits.append(f'* {self.project} ({date})  \n{line.strip(" *")}')
+        return hits
+
     def __repr__(self):
         return self.project

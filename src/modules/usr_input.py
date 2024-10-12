@@ -25,9 +25,17 @@ def select_project(projects):
     return project
 
 def get_args():
-    if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall']:
-        print('usage:\n  labnotes [add/read/readall]')
+    if len(sys.argv) < 2 or sys.argv[1] not in ['add', 'read', 'readall', 'search']:
+        print('usage:\n  labnotes [add/read/readall/search]')
         sys.exit(1)
 
     option = sys.argv[1]
     return option
+
+def get_search_query():
+    if len(sys.argv) < 3:
+        print('usage:\n  labnotes search query')
+        sys.exit(1)
+
+    query = sys.argv[2]
+    return query

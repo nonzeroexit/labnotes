@@ -16,6 +16,20 @@ def main():
         print_notes(all_notebooks_content)
         sys.exit(0)
 
+    if option == 'search':
+        query = usr_input.get_search_query()
+        notebooks = [Notebook(project) for project in projects]
+        notebooks = [notebook for notebook in notebooks if notebook.exists]
+        hits = []
+        for notebook in notebooks:
+            hits += notebook.search_note(query)
+        if not hits:
+            print('No hits found')
+            sys.exit(0)
+        for hit in hits:
+            print_notes(hit)
+        sys.exit(0)
+
     project = usr_input.select_project(projects)
     notebook = Notebook(project)
     if option == 'read':
