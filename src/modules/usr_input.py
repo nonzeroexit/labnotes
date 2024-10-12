@@ -46,6 +46,8 @@ def get_n_notes():
     n_notes = -1 # all notes
     try:
         n_notes = int(sys.argv[2])
+        if n_notes < 1:
+            misc.error('n_notes must be bigger than 0')
     except ValueError:
         misc.error(f'{sys.argv[2]} is not a valid number')
     except IndexError:
