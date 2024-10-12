@@ -11,8 +11,9 @@ def main():
     option = usr_input.get_args()
 
     if option == 'readall':
+        n_notes = usr_input.get_n_notes()
         notebooks = [Notebook(project) for project in projects if Notebook(project).exists]
-        notebooks_content = [notebook.get_last_n_notes(5) for notebook in notebooks]
+        notebooks_content = [notebook.get_last_n_notes(n_notes) for notebook in notebooks]
         print_notes(('\n').join(notebooks_content))
 
     elif option =='search':

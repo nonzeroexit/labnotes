@@ -16,6 +16,8 @@ class Notebook:
             return f'# {self.project}\n{notebook_content}'
 
     def get_last_n_notes(self, n_notes):
+        if n_notes == -1: # all notes
+            return self.get_content()
         n = 0
         lines = []
         reverse_content = self.get_content().split('\n')[::-1]
