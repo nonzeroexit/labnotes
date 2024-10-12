@@ -27,7 +27,9 @@ def main():
     elif option == 'read':
         project = usr_input.select_project(projects)
         notebook = Notebook(project)
-        print_notes(f'# {notebook.project}\n{notebook.get_content()}' if notebook.exists else 'Notebook not found')
+        if not notebook.exists or not notebook.has_content:
+            misc.error('Notebook not found or empty')
+        print_notes(f'# {notebook.project}\n{notebook.get_content()}')
 
     elif option == 'add':
         project = usr_input.select_project(projects)
