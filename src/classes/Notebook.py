@@ -1,9 +1,10 @@
 import os
+from modules.misc import get_projects_path
 
 class Notebook:
-    def __init__(self, project, projects_path):
+    def __init__(self, project):
         self.project = project
-        self.path = os.path.join(projects_path, project, 'labnotes.txt')
+        self.path = os.path.join(get_projects_path(), project, 'labnotes.txt')
         self.exists = os.path.isfile(self.path)
 
     def get_content(self):
