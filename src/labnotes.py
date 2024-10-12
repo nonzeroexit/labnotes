@@ -25,11 +25,12 @@ def main():
         print_notes(('\n').join(hits))
 
     elif option == 'read':
+        n_notes = usr_input.get_n_notes()
         project = usr_input.select_project(projects)
         notebook = Notebook(project)
         if not notebook.exists or not notebook.has_content:
             misc.error('Notebook not found or empty')
-        print_notes(f'# {notebook.project}\n{notebook.get_content()}')
+        print_notes(f'# {notebook.project}\n{notebook.get_last_n_notes(n_notes)}')
 
     elif option == 'add':
         project = usr_input.select_project(projects)
