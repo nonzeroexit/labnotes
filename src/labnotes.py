@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import os
 import sys
-from datetime import date as get_date
 from modules import misc
 from modules import usr_input
 from classes.Notebook import Notebook
@@ -24,8 +23,7 @@ def main():
 
     if option == 'add':
         note = input('Note: ')
-        date = get_date.today().strftime("%d-%m-%y")
-        notebook.add_note(note, date)
+        notebook.add_note(note)
 
 if __name__ == '__main__':
     main()
