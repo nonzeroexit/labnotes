@@ -11,14 +11,13 @@ def main():
     option = usr_input.get_args()
 
     if option == 'readall':
-        notebooks = [Notebook(project) for project in projects]
-        all_notebooks_content = ('\n').join([notebook.get_content() for notebook in notebooks if notebook.exists])
+        notebooks = [Notebook(project) for project in projects if Notebook(project).exists]
+        all_notebooks_content = ('\n').join([notebook.get_content() for notebook in notebooks])
         print_notes(all_notebooks_content)
 
     elif option =='search':
         query = usr_input.get_search_query()
-        notebooks = [Notebook(project) for project in projects]
-        notebooks = [notebook for notebook in notebooks if notebook.exists]
+        notebooks = [Notebook(project) for project in projects if Notebook(project).exists]
         hits = [notebook.search_note(query) for notebook in notebooks]
         if not any(hits):
             misc.error('No hits found', 0)
