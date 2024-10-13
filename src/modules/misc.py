@@ -19,5 +19,5 @@ def error(msg, code = 1):
     sys.exit(code)
 
 def help():
-    print('usage:\n  labnotes add/read [last_n_notes]/readall [last_n_notes]/search query\n  [optional]')
+    print('usage:\n  labnotes add/read [n_notes]/readall [n_notes]/search query\n  [optional]')
     sys.exit(0)
