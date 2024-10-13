@@ -28,8 +28,6 @@ def main():
         n_notes = usr_input.get_n_notes()
         project = usr_input.select_project([project for project in projects if Notebook(project).has_content])
         notebook = Notebook(project)
-        if not notebook.exists or not notebook.has_content:
-            sys.exit('Notebook not found or empty')
         print_notes(f'# {notebook.project}\n{notebook.get_notes(n_notes)}')
 
     elif option == 'add':
