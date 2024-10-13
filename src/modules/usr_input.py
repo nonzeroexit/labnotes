@@ -14,7 +14,7 @@ def select_project(projects):
 
 def get_args():
     if len(sys.argv) < 2 or sys.argv[1] not in ['help', 'add', 'read', 'readall', 'search'] or sys.argv[1] == 'help':
-        misc.error('usage:\n  labnotes add/read [last_n_notes]/readall [last_n_notes]/search query\n  [optional]')
+        misc.help()
 
     option = sys.argv[1]
     return option

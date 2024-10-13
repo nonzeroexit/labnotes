@@ -17,3 +17,7 @@ def get_projects():
 def error(msg, code = 1):
     print(msg)
     sys.exit(code)
+
+def help():
+    print('usage:\n  labnotes add/read [last_n_notes]/readall [last_n_notes]/search query\n  [optional]')
+    sys.exit(0)
