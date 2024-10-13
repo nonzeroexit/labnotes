@@ -16,7 +16,7 @@ class Notebook:
             notebook_content = fhandle.read().strip()
             return notebook_content
 
-    def get_last_n_notes(self, n_notes):
+    def get_notes(self, n_notes):
         if n_notes == -1: # all notes
             return self.get_content()
         note_counter = 0
