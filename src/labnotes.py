@@ -21,7 +21,7 @@ def main():
         notebooks = [Notebook(project) for project in projects if Notebook(project).has_content]
         hits = [notebook.search_note(query) for notebook in notebooks]
         if not any(hits):
-            misc.error('No hits found', 0)
+            sys.exit('No hits found')
         print_notes(('\n').join(hits))
 
     elif option == 'read':
@@ -29,7 +29,7 @@ def main():
         project = usr_input.select_project([project for project in projects if Notebook(project).has_content])
         notebook = Notebook(project)
         if not notebook.exists or not notebook.has_content:
-            misc.error('Notebook not found or empty')
+            sys.exit('Notebook not found or empty')
         print_notes(f'# {notebook.project}\n{notebook.get_notes(n_notes)}')
 
     elif option == 'add':

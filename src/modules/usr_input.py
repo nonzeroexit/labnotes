@@ -21,11 +21,11 @@ def get_args():
 
 def get_search_query():
     if len(sys.argv) < 3:
-        misc.error('usage:\n  labnotes search query')
+        sys.exit('usage:\n  labnotes search query')
 
     query = sys.argv[2]
     if len(query) < 2:
-        misc.error('Search query must be at least 2 characters long')
+        sys.exit('Search query must be at least 2 characters long')
     return query
 
 def get_n_notes():
@@ -33,4 +33,4 @@ def get_n_notes():
         return -1 # all notes
     if sys.argv[2].isdigit() and int(sys.argv[2]) > 0:
         return int(sys.argv[2])
-    misc.error(f'{sys.argv[2]} is not a valid number')
+    sys.exit(f'{sys.argv[2]} is not a valid number')
