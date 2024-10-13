@@ -16,7 +16,7 @@ class Notebook:
             notebook_content = fhandle.read().strip()
             return notebook_content
 
-    def get_notes(self, n_notes):
+    def get_notes(self, n_notes: int):
         if n_notes == -1: # all notes
             return self.get_content()
         note_counter = 0
@@ -33,14 +33,14 @@ class Notebook:
                 break
         return ('\n').join(lines)
 
-    def add_note(self, note):
+    def add_note(self, note: str):
         date = get_date.today().strftime("%d-%m-%y")
         with open(self.path, 'a', encoding='utf-8') as fhandle:
             if date not in self.get_content(): # first note of the day
                 fhandle.write(f'### {date}\n')
             fhandle.write(f'* {note}\n')
 
-    def search_note(self, query):
+    def search_note(self, query: str):
         hits = []
         date = NO_DATE
         for line in self.get_content().split('\n'):

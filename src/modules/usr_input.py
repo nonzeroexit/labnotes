@@ -1,7 +1,7 @@
 import sys
 from modules import misc
 
-def select_project(projects):
+def select_project(projects: list[str]):
     print('ID - Project')
     for i, project in enumerate(projects):
         print(f'{i:2d} - {project}')
