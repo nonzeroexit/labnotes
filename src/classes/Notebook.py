@@ -39,6 +39,7 @@ class Notebook:
             if date not in self.get_content(): # first note of the day
                 fhandle.write(f'### {date}\n')
             fhandle.write(f'* {note}\n')
+        print(f'Note added successfully to {self.project}')
 
     def search_note(self, query: str):
         hits = []
