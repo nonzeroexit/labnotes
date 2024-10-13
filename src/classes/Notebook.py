@@ -2,7 +2,7 @@ import os
 from datetime import date as get_date
 from modules.misc import get_projects_path
 
-NO_DATE = 'noDate'
+NO_DATE = 'NO_DATE'
 
 class Notebook:
     def __init__(self, project):
