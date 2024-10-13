@@ -24,7 +24,6 @@ def get_search_query():
         misc.error('usage:\n  labnotes search query')
 
     query = sys.argv[2]
-
     if len(query) < 2:
         misc.error('Search query must be at least 2 characters long')
     return query
