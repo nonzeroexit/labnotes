@@ -2,28 +2,15 @@ import sys
 from modules import misc
 
 def select_project(projects):
-
-    def choose_project(projects):
-
-        def get_project_index(list_):
-            while True:
-                try:
-                    index = int(input('ID: '))
-                except ValueError:
-                    print('Wrong value, try again')
-                    continue
-                if 0 <= index < len(list_):
-                    return index
-                else:
-                    print('Wrong value, try again')
-
-        print('ID - Project')
-        for i, project in enumerate(projects):
-            print(f'{i:2d} - {project}')
-        return projects[get_project_index(projects)]
-
-    project = choose_project(projects)
-    return project
+    print('ID - Project')
+    for i, project in enumerate(projects):
+        print(f'{i:2d} - {project}')
+    while True:
+        index = input('ID: ')
+        if index.isdigit() and 0 <= int(index) < len(projects):
+            return projects[int(index)]
+        else:
+            print('Wrong value, try again')
 
 def get_args():
     if len(sys.argv) < 2 or sys.argv[1] not in ['help', 'add', 'read', 'readall', 'search'] or sys.argv[1] == 'help':
