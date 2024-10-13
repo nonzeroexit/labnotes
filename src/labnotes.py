@@ -26,7 +26,7 @@ def main():
 
     elif option == 'read':
         n_notes = usr_input.get_n_notes()
-        project = usr_input.select_project(projects)
+        project = usr_input.select_project([project for project in projects if Notebook(project).has_content])
         notebook = Notebook(project)
         if not notebook.exists or not notebook.has_content:
             misc.error('Notebook not found or empty')
