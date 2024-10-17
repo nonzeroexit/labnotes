@@ -7,6 +7,7 @@ class Note:
         self.project = project
 
     def get_note_w_format(self, format, include_date = False):
+        assert format in ['date_note', 'project_date_note', 'markdown']
         if format == 'date_note':
             return f'* **({self.date})** {self.note}'
         if format == 'project_date_note':

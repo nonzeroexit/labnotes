@@ -11,6 +11,7 @@ class Notebook:
         self.has_content = os.path.isfile(self.path) and os.path.getsize(self.path) > 0
 
     def _get_content(self):
+        assert self.has_content
         with open(self.path, 'r', encoding='utf-8') as fhandle:
             notebook_content = fhandle.read().strip()
             return notebook_content
@@ -32,7 +33,7 @@ class Notebook:
 
     def add_note(self, note: str):
         new_note = Note(note, get_date.today().strftime("%d-%m-%y"))
-        include_date = new_note.date not in self._get_content() # first note of the day
+        include_date = not self.has_content or new_note.date not in self._get_content() # empty notebook or first note of the day
         with open(self.path, 'a', encoding='utf-8') as fhandle:
             fhandle.write(new_note.get_note_w_format('markdown', include_date))
         print(f'Note added successfully to {self.project}')
