@@ -32,13 +32,13 @@ def get_search_query():
 def get_n_notes():
     if len(sys.argv) < 3: # default value
         option = sys.argv[1]
-        match option:
-            case 'readall':
-                return 7
-            case 'read':
-                return 10
-    if sys.argv[2] == 'all':
+        if option == 'readall':
+            return 7
+        if option == 'read':
+            return 10
+    n_notes = sys.argv[2]
+    if n_notes == 'all':
         return 0
-    if sys.argv[2].isdigit() and int(sys.argv[2]) >= 1:
-        return int(sys.argv[2])
+    if n_notes.isdigit() and int(n_notes) >= 1:
+        return int(n_notes)
     sys.exit(f'{sys.argv[2]} is not a valid number')
