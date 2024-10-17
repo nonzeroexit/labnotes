@@ -3,8 +3,6 @@ from modules import misc
 from classes.Notebook import Notebook
 
 def select_project(notebooks: list[Notebook]):
-    if len(notebooks) == 1:
-        return notebooks[0]
     print('ID - Project')
     for i, notebook in enumerate(notebooks):
         print(f'{i:2d} - {notebook.project}')
