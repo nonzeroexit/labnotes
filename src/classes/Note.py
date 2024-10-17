@@ -14,8 +14,7 @@ class Note:
             return f'* **({self.project}:{self.date})** {self.note}'
         if format == 'markdown':
             return f'# {self.date}\n* {self.note}\n' if include_date else f'* {self.note}\n'
-        else:
-            sys.exit(f'{format} is a wrong format')
+        sys.exit(f'{format} is a wrong format')
 
     def __repr__(self):
         return self.note
