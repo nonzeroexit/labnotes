@@ -8,8 +8,7 @@ class Notebook:
     def __init__(self, project):
         self.project = project
         self.path = os.path.join(get_projects_path(), project, 'labnotes.txt')
-        self.exists = os.path.isfile(self.path)
-        self.has_content = self.exists and os.path.getsize(self.path) > 0
+        self.has_content = os.path.isfile(self.path) and os.path.getsize(self.path) > 0
 
     def get_content(self):
         with open(self.path, 'r', encoding='utf-8') as fhandle:
