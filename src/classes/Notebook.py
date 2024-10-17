@@ -18,7 +18,7 @@ class Notebook:
     def get_notes(self, n_notes: int):
         date = NO_DATE
         notes = []
-        for i, line in enumerate(self._get_content().split('\n')):
+        for line in self._get_content().split('\n'):
             if line.startswith('#'):
                 date = line.strip(' #')
             elif line.startswith('*'):
@@ -34,8 +34,8 @@ class Notebook:
         print(f'Note added successfully to {self.project}')
 
     def search_note(self, query: str):
-        hits = []
         date = NO_DATE
+        hits = []
         for line in self._get_content().split('\n'):
             if line.startswith('#'):
                 date = line.strip(' #')
