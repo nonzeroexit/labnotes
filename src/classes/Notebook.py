@@ -17,13 +17,13 @@ class Notebook:
 
     def get_notes(self, n_notes: int):
         date = NO_DATE
-        lines = []
+        notes = []
         for i, line in enumerate(self.get_content().split('\n')):
             if line.startswith('#'):
                 date = line.strip(' #')
             if line.startswith('*'):
-                lines.append(f'* **({date})** {line.strip(" *")}')
-        return ('\n').join(lines[-n_notes:])
+                notes.append(f'* **({date})** {line.strip(" *")}')
+        return ('\n').join(notes[-n_notes:])
 
     def add_note(self, note: str):
         date = get_date.today().strftime("%d-%m-%y")
