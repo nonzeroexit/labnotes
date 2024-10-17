@@ -10,7 +10,13 @@ def main():
     projects = misc.get_projects()
     option = usr_input.get_args()
 
-    if option == 'readall':
+    if option == 'read':
+        n_notes = usr_input.get_n_notes()
+        project = usr_input.select_project([project for project in projects if Notebook(project).has_content])
+        notebook = Notebook(project)
+        print_notes(f'# {notebook.project}\n{notebook.get_notes(n_notes)}')
+
+    elif option == 'readall':
         n_notes = usr_input.get_n_notes()
         notebooks = [Notebook(project) for project in projects if Notebook(project).has_content]
         notebooks_content = [f'# {notebook.project}\n{notebook.get_notes(n_notes)}' for notebook in notebooks]
@@ -23,12 +29,6 @@ def main():
         if not any(hits):
             sys.exit('No hits found')
         print_notes(('\n').join(hits))
-
-    elif option == 'read':
-        n_notes = usr_input.get_n_notes()
-        project = usr_input.select_project([project for project in projects if Notebook(project).has_content])
-        notebook = Notebook(project)
-        print_notes(f'# {notebook.project}\n{notebook.get_notes(n_notes)}')
 
     elif option == 'add':
         project = usr_input.select_project(projects)
