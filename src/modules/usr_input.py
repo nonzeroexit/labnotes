@@ -10,8 +10,7 @@ def select_project(notebooks: list[Notebook]):
         index = input('ID: ')
         if index.isdigit() and 0 <= int(index) < len(notebooks):
             return notebooks[int(index)]
-        else:
-            print('Wrong value, try again')
+        print('Wrong value, try again')
 
 def get_args():
     if len(sys.argv) < 2 or sys.argv[1] not in ['help', 'add', 'read', 'readall', 'search'] or sys.argv[1] == 'help':
