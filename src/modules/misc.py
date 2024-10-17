@@ -15,5 +15,5 @@ def get_projects():
     return projects
 
 def help():
-    print('usage:\n  labnotes add/read [n_notes]/readall [n_notes]/search query\n  [optional]')
+    print('usage:\n  labnotes add/read [n_notes=10]/readall [n_notes=7]/search query\n  [optional]\n  to read all notes use "all"')
     sys.exit(0)

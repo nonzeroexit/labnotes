@@ -21,7 +21,7 @@ class Notebook:
         for i, line in enumerate(self._get_content().split('\n')):
             if line.startswith('#'):
                 date = line.strip(' #')
-            if line.startswith('*'):
+            elif line.startswith('*'):
                 notes.append(f'* **({date})** {line.strip(" *")}')
         return ('\n').join(notes[-n_notes:])
 
