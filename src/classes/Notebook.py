@@ -40,7 +40,7 @@ class Notebook:
             if line.startswith('#'):
                 date = line.strip(' #')
             if query in line:
-                hits.append(f'* {self.project} ({date})  \n{line.strip(" *")}')
+                hits.append(f'* **({self.project}:{date})** {line.strip(" *")}')
         return ('\n').join(hits)
 
     def __repr__(self):
