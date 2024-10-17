@@ -29,7 +29,7 @@ class Notebook:
         date = get_date.today().strftime("%d-%m-%y")
         with open(self.path, 'a', encoding='utf-8') as fhandle:
             if date not in self._get_content(): # first note of the day
-                fhandle.write(f'### {date}\n')
+                fhandle.write(f'# {date}\n')
             fhandle.write(f'* {note}\n')
         print(f'Note added successfully to {self.project}')
 
@@ -37,7 +37,7 @@ class Notebook:
         hits = []
         date = NO_DATE
         for line in self._get_content().split('\n'):
-            if line.startswith('###'):
+            if line.startswith('#'):
                 date = line.strip(' #')
             if query in line:
                 hits.append(f'* {self.project} ({date})  \n{line.strip(" *")}')
