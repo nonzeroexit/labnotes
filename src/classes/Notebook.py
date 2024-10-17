@@ -7,7 +7,7 @@ NO_DATE = 'NO_DATE'
 class Notebook:
     def __init__(self, project):
         self.project = project
-        self.path = os.path.join(get_projects_path(), project, 'labnotes.txt')
+        self.path = os.path.join(get_projects_path(), project, 'labnotes.md')
         self.has_content = os.path.isfile(self.path) and os.path.getsize(self.path) > 0
 
     def _get_content(self):
