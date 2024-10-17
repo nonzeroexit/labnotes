@@ -1,4 +1,5 @@
 import os
+from classes.Note import Note
 from datetime import date as get_date
 
 NO_DATE = 'NO_DATE'
@@ -14,32 +15,30 @@ class Notebook:
             notebook_content = fhandle.read().strip()
             return notebook_content
 
-    def get_notes(self, n_notes: int):
+    def _get_all_notes(self):
         date = NO_DATE
         notes = []
         for line in self._get_content().split('\n'):
             if line.startswith('#'):
                 date = line.strip(' #')
             elif line.startswith('*'):
-                notes.append(f'* **({date})** {line.strip(" *")}')
-        return ('\n').join(notes[-n_notes:])
+                note = Note(line.strip(' *'), date, self.project)
+                notes.append(note)
+        return notes
+
+    def get_notes(self, n_notes: int):
+        notes = [note.get_note_w_format('date_note') for note in self._get_all_notes()[-n_notes:]]
+        return ('\n').join(notes)
 
     def add_note(self, note: str):
-        date = get_date.today().strftime("%d-%m-%y")
+        new_note = Note(note, get_date.today().strftime("%d-%m-%y"))
+        include_date = new_note.date not in self._get_content() # first note of the day
         with open(self.path, 'a', encoding='utf-8') as fhandle:
-            if date not in self._get_content(): # first note of the day
-                fhandle.write(f'# {date}\n')
-            fhandle.write(f'* {note}\n')
+            fhandle.write(new_note.get_note_w_format('markdown', include_date))
         print(f'Note added successfully to {self.project}')
 
     def search_note(self, query: str):
-        date = NO_DATE
-        hits = []
-        for line in self._get_content().split('\n'):
-            if line.startswith('#'):
-                date = line.strip(' #')
-            if query in line:
-                hits.append(f'* **({self.project}:{date})** {line.strip(" *")}')
+        hits = [note.get_note_w_format('project_date_note') for note in self._get_all_notes() if query in note.note or query in note.date]
         return ('\n').join(hits)
 
     def __repr__(self):
