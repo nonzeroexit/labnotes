@@ -1,16 +1,17 @@
 import sys
 from modules import misc
+from classes.Notebook import Notebook
 
-def select_project(projects: list[str]):
-    if len(projects) == 1:
-        return projects[0]
+def select_project(notebooks: list[Notebook]):
+    if len(notebooks) == 1:
+        return notebooks[0]
     print('ID - Project')
-    for i, project in enumerate(projects):
-        print(f'{i:2d} - {project}')
+    for i, notebook in enumerate(notebooks):
+        print(f'{i:2d} - {notebook.project}')
     while True:
         index = input('ID: ')
-        if index.isdigit() and 0 <= int(index) < len(projects):
-            return projects[int(index)]
+        if index.isdigit() and 0 <= int(index) < len(notebooks):
+            return notebooks[int(index)]
         else:
             print('Wrong value, try again')
 
