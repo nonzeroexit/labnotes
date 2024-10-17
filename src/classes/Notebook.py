@@ -16,21 +16,14 @@ class Notebook:
             return notebook_content
 
     def get_notes(self, n_notes: int):
-        if n_notes == -1: # all notes
-            return self.get_content()
-        note_counter = 0
+        date = NO_DATE
         lines = []
-        reverse_content = self.get_content().split('\n')[::-1]
-        for i, line in enumerate(reverse_content):
+        for i, line in enumerate(self.get_content().split('\n')):
+            if line.startswith('#'):
+                date = line.strip(' #')
             if line.startswith('*'):
-                note_counter += 1
-            lines.insert(0, line)
-            if note_counter == n_notes:
-                dates = [line for pos, line in enumerate(reverse_content) if pos > i and line.startswith('###')]
-                last_note_date = dates[0] if len(dates) >= 1 else f'### {NO_DATE}'
-                lines.insert(0, last_note_date)
-                break
-        return ('\n').join(lines)
+                lines.append(f'* **({date})** {line.strip(" *")}')
+        return ('\n').join(lines[-n_notes:])
 
     def add_note(self, note: str):
         date = get_date.today().strftime("%d-%m-%y")

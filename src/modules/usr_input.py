@@ -32,7 +32,7 @@ def get_search_query():
 
 def get_n_notes():
     if len(sys.argv) < 3:
-        return -1 # all notes
+        return 0 # all notes
     if sys.argv[2].isdigit() and int(sys.argv[2]) > 0:
         return int(sys.argv[2])
     sys.exit(f'{sys.argv[2]} is not a valid number')
